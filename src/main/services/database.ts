@@ -51,9 +51,6 @@ export class DatabaseService {
       CREATE INDEX IF NOT EXISTS idx_conversations_url ON conversations_v2(url);
       CREATE INDEX IF NOT EXISTS idx_conversations_platform ON conversations_v2(platform);
 
-      -- FTS5 for full text search (Legacy)
-      CREATE VIRTUAL TABLE IF NOT EXISTS messages_fts_v2 USING fts5(content, thinking, content='messages_v2', content_rowid='rowid');
-
 
       -- New FTS5 Index for Vertical Search (Tokenized)
       -- content='messages_v2' means it's an external content table linked to messages_v2
@@ -62,18 +59,7 @@ export class DatabaseService {
         content='messages_v2',
         content_rowid='rowid'
       );
-
-      -- Triggers for FTS (Legacy)
-      CREATE TRIGGER IF NOT EXISTS messages_ai_v2 AFTER INSERT ON messages_v2 BEGIN
-        INSERT INTO messages_fts_v2(rowid, content, thinking) VALUES (new.rowid, new.content, new.thinking);
-      END;
-      CREATE TRIGGER IF NOT EXISTS messages_ad_v2 AFTER DELETE ON messages_v2 BEGIN
-        INSERT INTO messages_fts_v2(messages_fts_v2, rowid, content, thinking) VALUES('delete', old.rowid, old.content, old.thinking);
-      END;
-      CREATE TRIGGER IF NOT EXISTS messages_au_v2 AFTER UPDATE ON messages_v2 BEGIN
-        INSERT INTO messages_fts_v2(messages_fts_v2, rowid, content, thinking) VALUES('delete', old.rowid, old.content, old.thinking);
-        INSERT INTO messages_fts_v2(rowid, content, thinking) VALUES (new.rowid, new.content, new.thinking);
-      END;
+      
     `)
   }
 
