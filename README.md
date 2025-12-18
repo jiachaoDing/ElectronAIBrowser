@@ -1,5 +1,7 @@
 # Electron AI Browser 项目功能与架构概览
 
+[![Open Source](https://img.shields.io/badge/Open%20Source-Yes-brightgreen)](#开源与贡献)
+
 本文档旨在全面介绍 Electron AI Browser 的项目定位、核心功能以及技术架构。本项目致力于打造一个统一的 AI 对话管理平台，让用户能够在一个应用中高效地使用和管理多个 AI 服务（如 ChatGPT, Copilot 等）。
 ## 实现成果截图
 
@@ -91,3 +93,8 @@ graph LR
 ## 4. 总结
 
 Electron AI Browser 不仅仅是一个套壳浏览器，它通过**自动化数据捕获**和**本地垂直搜索**两大核心技术，将分散在各个网页中的 AI 对话转化为用户可管理、可检索的个人知识库。
+
+## 开源与贡献
+
+- 本项目已作为**开源项目**对外发布，欢迎 Star 与 Fork。
+- 欢迎通过 Issue / Pull Request 参与贡献与反馈。
